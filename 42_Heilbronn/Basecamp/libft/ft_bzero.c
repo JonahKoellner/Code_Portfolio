@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:17:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/13 15:22:44 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/11 13:29:23 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/11 13:37:10 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	int needle_len;
-	int haystack_len;
+	int		counter;
+	char	*void_cast;
 
-	needle_len = 0;
-	while (needle[needle_len] != '\0')
-		needle_len++;
+	void_cast = s;
+	counter = 0;
+	while (counter < (int)n)
+	{
+		void_cast[counter] = 0;
+		counter++;
+	}
 }
+
+/*
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char string1[10];
+	char string2[10];
+	ft_bzero(string1, 8);
+	bzero(string1, 8);
+	printf("%s\n", string1);
+	printf("%s\n", string2);
+}
+*/

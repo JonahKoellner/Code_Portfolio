@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:17:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/13 15:22:44 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/11 09:40:32 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/11 13:28:17 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+size_t	ft_strlen(const char *str)
 {
-	int needle_len;
-	int haystack_len;
+	int	counter;
 
-	needle_len = 0;
-	while (needle[needle_len] != '\0')
-		needle_len++;
+	counter = 0;
+	while (str[counter] != 0x00)
+		counter++;
+	return ((size_t)counter);
 }
+
+/*
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char* string = "Hallo";
+	printf("%lu\n", ft_strlen(string));
+	printf("%lu\n", strlen(string));
+}
+*/

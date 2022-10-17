@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:17:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/13 15:22:44 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/11 10:27:09 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/11 10:33:32 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+int	ft_toupper(int c)
 {
-	int needle_len;
-	int haystack_len;
-
-	needle_len = 0;
-	while (needle[needle_len] != '\0')
-		needle_len++;
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
 }

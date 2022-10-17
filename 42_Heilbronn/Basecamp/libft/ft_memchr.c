@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:17:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/13 15:22:44 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/11 13:38:20 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/11 13:59:21 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int needle_len;
-	int haystack_len;
+	const char	*str;
+	int			counter;
 
-	needle_len = 0;
-	while (needle[needle_len] != '\0')
-		needle_len++;
+	str = s;
+	counter = 0;
+	while (counter < (int)n)
+	{
+		if (str[counter] == (unsigned char)c)
+			return ((void *)&str[counter]);
+		counter++;
+	}
+	return ((void *)0);
 }
+
+/*
+#include <string.h>
+#include <stdio.h>
+int main(void)
+{
+	char *string1 = "Hallo";
+	printf("%s\n", ft_memchr(string1, 'a', 10));
+	printf("%s\n", memchr(string1, 'a', 10));
+}
+*/

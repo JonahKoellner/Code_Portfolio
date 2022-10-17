@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 15:17:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/13 15:22:44 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/10 16:46:07 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/11 09:10:43 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-char	*strnstr(const char *haystack, const char *needle, size_t len)
+int	ft_isdigit(int c)
 {
-	int needle_len;
-	int haystack_len;
-
-	needle_len = 0;
-	while (needle[needle_len] != '\0')
-		needle_len++;
+	if (c >= 48 && c <= 57)
+	{
+		return (1);
+	}
+	return (0);
 }
+
+/*
+#include <stdio.h>
+#include <ctype.h>
+int main(void)
+{
+	printf("%d\n", ft_isdigit(50));
+	printf("%d\n", isdigit(50));
+}
+*/
