@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:24:26 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/17 12:44:35 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:18:19 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*fill(char const *s1, char const *s2, int s1_l, int s2_l)
 
 	counter = 0;
 	ret_str = malloc((s1_l + (s2_l + 1)) * sizeof(char));
-	if (ret_str == NULL)
-		return (NULL);
+	if (ret_str == 0)
+		return (0);
 	while (counter < s1_l)
 	{
 		ret_str[counter] = s1[counter];

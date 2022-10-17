@@ -1,47 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 11:45:48 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/17 19:12:17 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/17 17:09:09 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/17 19:12:25 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <errno.h>
+#include <unistd.h>
 
-char	*cpy(const char *s1, char *s2)
+int	strlen_not_character(const char *s1, const char *set)
 {
 	int	counter;
 
 	counter = 0;
 	while (s1[counter] != '\0')
 	{
-		s2[counter] = s1[counter];
-		counter++;
+		if (s1[counter] != set)
+			counter++;
 	}
-	s2[counter] = '\0';
-	return (s2);
+	return (counter);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*ret_mem;
-	int		size_of_s1;
+	char	*ret_str;
+	int		str_len;
 	int		counter;
+	int		counter_ret;
 
+	counter_ret = 0;
 	counter = 0;
+	str_len = strlen(s1, set);
+	ret_str = malloc(str_len * sizeof(char));
 	while (s1[counter] != '\0')
-		counter++;
-	size_of_s1 = 1 + counter;
-	ret_mem = malloc(size_of_s1 * sizeof(char));
-	if (ret_mem == 0)
 	{
-		errno = ENOMEM;
-		return (0);
+		if (s1[counter] != set)
+			ret_str[counter_ret++] = s1[counter++];
 	}
-	return (cpy(s1, ret_mem));
+	return (ret_str);
 }
