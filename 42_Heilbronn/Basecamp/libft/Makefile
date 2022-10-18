@@ -10,10 +10,10 @@ NAME = libft
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-	${CC} -o ${NAME} ${OBJS}
+	${CC} -O -o ${NAME} ${OBJS}
 
 all:	${NAME}
-
+	ar -rcs
 clean:
 		${RM} ${OBJS}
 
