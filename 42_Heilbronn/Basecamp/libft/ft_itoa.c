@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:09:09 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 16:48:35 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/20 14:39:58 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	len_int(int n)
 {
-	int	start;
-	int	end;
+	int	counter;
 
-	if (!s1 || !set)
-		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	end = ft_strlen(s1);
-	while (s1[end] && ft_strchr(set, s1[end]))
-		end--;
-	return (ft_substr(s1, start, (end-start)));
+	counter = 0;
+	while ((n))
+	{
+		counter++;
+		n /= 10;
+	}
+	return (counter);
+}
+
+char	*ft_itoa(int n)
+{
+	int		n_len;
+	char	*ret_str;
+	int		counter;
+
+	n_len = len_int(n);
+	ret_str = malloc(n_len * sizeof(char));
+	counter = 0;
+	while (counter < n_len)
+	{
+		ret_str[n_len - counter] = n % 10;
+		n /= 10;
+		counter++;
+	}
+	return (ret_str);
 }

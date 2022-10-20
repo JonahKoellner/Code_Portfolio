@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:09:09 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 16:48:35 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/20 15:12:58 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/20 15:25:36 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	ft_lstsize(t_list *lst)
 {
-	int	start;
-	int	end;
+	int		counter;
+	t_list *lst_p;
 
-	if (!s1 || !set)
-		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	end = ft_strlen(s1);
-	while (s1[end] && ft_strchr(set, s1[end]))
-		end--;
-	return (ft_substr(s1, start, (end-start)));
+	lst_p = lst;
+	counter = 0;
+	while (lst_p->next != NULL)
+	{
+		lst_p = lst_p->next;
+		counter++;
+	}
+	return (counter);
 }

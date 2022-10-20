@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 17:09:09 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 16:48:35 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/20 14:43:00 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/20 14:48:32 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+t_list	*ft_lstnew(void *content)
 {
-	int	start;
-	int	end;
+	t_list	*ret_node;
 
-	if (!s1 || !set)
-		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
-		start++;
-	end = ft_strlen(s1);
-	while (s1[end] && ft_strchr(set, s1[end]))
-		end--;
-	return (ft_substr(s1, start, (end-start)));
+	ret_node = malloc(sizeof(t_list));
+	ret_node->content = content;
+	ret_node->next = NULL;
+	return (ret_node);
 }
+
