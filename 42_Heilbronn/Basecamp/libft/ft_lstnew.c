@@ -23,4 +23,3 @@ t_list	*ft_lstnew(void *content)
 	ret_node->next = NULL;
 	return (ret_node);
 }
-
