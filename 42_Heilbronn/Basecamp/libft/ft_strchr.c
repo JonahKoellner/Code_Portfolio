@@ -6,11 +6,13 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:36:08 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/11 11:10:44 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:15:04 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Find the first accurance of c in s. 
+#include "libft.h"
+
+// Find the first accurance of c in s.
 //Return the found accurance (pointer). If c is '\0' return the '\0' of s
 char	*ft_strchr(const char *s, int c)
 {

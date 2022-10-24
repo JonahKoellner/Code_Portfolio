@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:09:09 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 16:48:35 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:06:08 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int	start;
 	int	end;
 
+	start = 0;
 	if (!s1 || !set)
 		return (NULL);
 	while (s1[start] && ft_strchr(set, s1[start]))

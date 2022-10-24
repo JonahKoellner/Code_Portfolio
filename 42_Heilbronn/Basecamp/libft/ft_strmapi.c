@@ -6,9 +6,11 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:38:03 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 14:38:59 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:10:27 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
@@ -18,7 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	counter = 0;
 	s_len = ft_strlen(s);
-	ret_str = ft_calloc(s_len + 1 * sizeof(char));
+	ret_str = ft_calloc(s_len + 1, sizeof(char));
 	if (ret_str == 0)
 		return (0);
 	while (counter < s_len)

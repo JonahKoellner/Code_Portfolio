@@ -6,11 +6,12 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:29:23 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/11 13:37:10 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:13:15 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

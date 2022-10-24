@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 11:11:12 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 15:23:08 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/24 12:50:01 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/24 13:05:17 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int	counter;
+	t_list *tmp_free;
 
-	counter = 0;
-	while (s[counter] != '\0')
-		counter++;
-	while (counter >= 0)
+	while ((*lst)->next != NULL)
 	{
-		if (s[counter] == c)
-			return ((char *)&s[counter]);
-		counter--;
+		del((*lst)->content);
+		tmp_free = *lst;
+		*lst = (*lst)->next;
+		free(tmp_free);
 	}
-	return (0);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	const char* string = "hallo";
-	printf("%p\n", ft_strrchr(string, 'a'));
-	printf("%p\n", strrchr(string, 'a'));
-
-}*/

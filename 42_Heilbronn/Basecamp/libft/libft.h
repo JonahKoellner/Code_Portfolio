@@ -6,14 +6,16 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:52:31 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 14:38:33 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:08:52 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 #define LIBFT_H
 
-typedef struct	s_list
+#include <unistd.h>
+
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -46,5 +48,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+int	ft_lstsize(t_list *lst);
 
-#endif LIBFT_H
+	#endif /*LIBFT_H*/

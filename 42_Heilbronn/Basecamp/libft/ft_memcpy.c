@@ -6,28 +6,26 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:01:06 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/11 14:17:37 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:39:02 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *restrict dest, const void *restrict src, size_t n)
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
 	int		counter;
-	char	*c_dest;
-	char	*c_src;
 
-	c_dest = (char *)dest;
-	c_src = (char *)src;
+	if (dst == NULL && src == NULL)
+		return (dst);
 	counter = 0;
 	while (counter < (int)n)
 	{
-		c_dest[counter] = c_src[counter];
+		((char *)dst)[counter] = ((char *)src)[counter];
 		counter++;
 	}
-	c_dest[counter] = '\0';
-	return (dest);
+	return (dst);
 }
 
 /*

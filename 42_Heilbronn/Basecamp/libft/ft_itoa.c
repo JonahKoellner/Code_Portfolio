@@ -6,11 +6,12 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 14:39:58 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:13:43 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 int	len_int(int n)
 {

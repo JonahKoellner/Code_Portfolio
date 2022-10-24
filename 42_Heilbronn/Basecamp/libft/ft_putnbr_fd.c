@@ -6,11 +6,12 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:25:47 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 14:39:21 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:14:42 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

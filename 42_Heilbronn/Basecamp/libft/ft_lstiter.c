@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 11:11:12 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 15:23:08 by jkollner         ###   ########.fr       */
+/*   Created: 2022/10/24 08:45:38 by jkollner          #+#    #+#             */
+/*   Updated: 2022/10/24 08:48:02 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	counter;
-
-	counter = 0;
-	while (s[counter] != '\0')
-		counter++;
-	while (counter >= 0)
+	while (lst->next != NULL)
 	{
-		if (s[counter] == c)
-			return ((char *)&s[counter]);
-		counter--;
+		f(lst->content);
+		lst = lst->next;
 	}
-	return (0);
 }
-
-/*
-#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	const char* string = "hallo";
-	printf("%p\n", ft_strrchr(string, 'a'));
-	printf("%p\n", strrchr(string, 'a'));
-
-}*/
