@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 13:13:43 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:37:06 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_itoa(int n)
 
 	n_len = len_int(n);
 	ret_str = malloc(n_len * sizeof(char));
+	if (ret_str == NULL)
+		return (0);
 	counter = 0;
 	while (counter < n_len)
 	{

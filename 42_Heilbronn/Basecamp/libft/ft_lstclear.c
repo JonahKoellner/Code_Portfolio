@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 12:50:01 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 13:05:17 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:32:13 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		*lst = (*lst)->next;
 		free(tmp_free);
 	}
+	lst = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:12:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 15:25:36 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:40:53 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 int	ft_lstsize(t_list *lst)
 {
 	int		counter;
-	t_list	*lst_p;
 
-	lst_p = lst;
 	counter = 0;
-	while (lst_p->next != NULL)
+	while (lst->next != NULL)
 	{
-		lst_p = lst_p->next;
+		lst = lst->next;
 		counter++;
 	}
 	return (counter);

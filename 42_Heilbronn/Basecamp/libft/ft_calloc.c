@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 09:49:19 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/20 09:29:48 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:54:57 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	*ft_calloc(size_t count, size_t size)
 		errno = ENOMEM;
 		return (0);
 	}
-	ft_bzero(ret_mem, count);
+	ft_bzero(ret_mem, count * size);
 	return (ret_mem);
 }
 
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s\n", (char *)ft_calloc(5, 1));
-// 	printf("%s\n", (char *)calloc(5, 1));
+// 	printf("%s\n", (char *)ft_calloc(8539, 1));
+// 	printf("%s\n", (char *)calloc(8539, 1));
 // }
