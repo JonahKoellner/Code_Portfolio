@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:10:22 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/26 16:57:33 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:14:10 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	char *str = "01234";
-// 	size_t size = 10;
-// 	printf("%s", ft_substr(str, 10, size));
+// 	char *str = "----hallo----";
+// 	size_t size = 5;
+// 	printf("%s", ft_substr(str, 4, size));
 
 // }

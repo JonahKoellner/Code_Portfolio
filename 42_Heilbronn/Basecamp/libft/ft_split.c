@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:09:51 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/26 16:54:27 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/10/31 15:56:24 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ int	fill_to_n(int n, char *dst, char *org)
 	return (counter);
 }
 
-void	error_free(int depth, char **arr_arr)
+int	count_c(char *s_p, char c)
 {
-	while (depth)
-		free(arr_arr[depth--]);
+	int	counter;
+
+	counter = 0;
+	while (s_p[counter] == c)
+		counter++;
+	return (counter);
 }
 
 char	**allocate_2d_arr(int size, char const *s, char c)
@@ -52,18 +56,21 @@ char	**allocate_2d_arr(int size, char const *s, char c)
 
 	s_p = (char *)s;
 	counter = 0;
-	ret = calloc((size_t)size + 1, sizeof(char *));
+	ret = ft_calloc((size_t)size + 1, sizeof(char *));
 	while (counter <= size)
 	{
+		s_p += count_c(s_p, c);
 		amount_in_arrays = count_until_c(s_p, c);
-		ret[counter] = calloc((size_t)amount_in_arrays, sizeof(char));
+		ret[counter] = ft_calloc((size_t)amount_in_arrays, sizeof(char));
 		if (fill_to_n(amount_in_arrays, ret[counter], s_p) != amount_in_arrays)
 		{
-			error_free(counter, ret);
+			while (counter)
+				free(ret[counter--]);
+			free(ret);
 			return (NULL);
 		}
 		counter++;
-		s_p += amount_in_arrays + 1;
+		s_p += amount_in_arrays;
 	}
 	return (ret);
 }
@@ -76,25 +83,29 @@ char	**ft_split(char const *s, char c)
 
 	counter = 0;
 	amount_total = 0;
-	while (s[counter] != '\0')
-		if (s[counter++] == c)
-			amount_total++;
-	ret_arr = allocate_2d_arr((unsigned int)amount_total, s, c);
-	if (ret_arr == 0)
+	if (!s || !c)
 		return (0);
+	while (s[counter] != '\0')
+	{
+		if (s[counter] == c && s[counter + 1] != c && s[counter + 1] != '\0')
+			amount_total++;
+		counter++;
+	}
+	ret_arr = allocate_2d_arr(amount_total, s, c);
+	if (ret_arr == NULL)
+		return (NULL);
 	return (ret_arr);
 }
 
 #include <stdio.h>
 int main(void)
 {
-	const char *s = "hallo test - this-is-a-test";
-	char c = '-';
-	char **ret = ft_split(s, c);
+	const char *s = "\0test\0this";
+	char **ret = ft_split(s, '\0');
 	int i = 0;
-	while (i < 6)
+	while (i < 0)
 	{
-		printf("%s\n", ret[i]);
+		printf("%d: %s\n", i, ret[i]);
 		i++;
 	}
 	printf("\n");
