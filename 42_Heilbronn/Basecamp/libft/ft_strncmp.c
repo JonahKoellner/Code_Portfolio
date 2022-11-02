@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:16 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 15:35:55 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:51:36 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((((unsigned char *)s1)[counter] - ((unsigned char *)s2)[counter]));
 }
 
-
 // #include <string.h>
 // #include <stdio.h>
 // int main(void)
@@ -39,4 +38,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // 	printf("%d\n", ft_strncmp(string1, string2, 10));
 // 	printf("%d\n", strncmp(string1, string2, 10));
 // }
-

@@ -6,13 +6,13 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 11:09:06 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:47:58 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
-#include <stdio.h>
+
 int	len_int(int n)
 {
 	int	counter;
@@ -57,6 +57,7 @@ char	*ft_itoa(int n)
 	return (ret_str);
 }
 
+// #include <stdio.h>
 // int	main(void)
 // {
 // 	int integer = -0;

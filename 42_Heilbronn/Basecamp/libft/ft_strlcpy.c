@@ -6,14 +6,14 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:14:20 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 13:22:47 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:51:22 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
 
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	counter;
 

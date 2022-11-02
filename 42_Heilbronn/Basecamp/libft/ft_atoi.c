@@ -6,14 +6,14 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:54:06 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/26 12:46:02 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:47:37 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	white_spaces(char c)
 {
 	return (c == '\t' || c == '\v' || c == '\f'
-			|| c == '\r' || c == '\n' || c == ' ');
+		|| c == '\r' || c == '\n' || c == ' ');
 }
 
 int	ft_atoi(const char *str)

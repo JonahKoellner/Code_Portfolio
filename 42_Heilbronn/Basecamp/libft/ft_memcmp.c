@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:18:30 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 15:20:26 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:50:08 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int			counter;
-	const char unsigned	*c_s1;
-	const char unsigned	*c_s2;
+	int					counter;
+	unsigned const char	*c_s1;
+	unsigned const char	*c_s2;
 
 	counter = 0;
 	c_s1 = s1;
