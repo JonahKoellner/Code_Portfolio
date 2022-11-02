@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:24:26 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 13:15:39 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 09:45:20 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		s1_len;
 	int		s2_len;
-	int		counter;
 
 	s1_len = 0;
 	s2_len = 0;
-	counter = 0;
 	while (s1[s1_len] != '\0')
 		s1_len++;
 	while (s2[s2_len] != '\0')

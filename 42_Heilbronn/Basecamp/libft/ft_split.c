@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:09:51 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/31 15:56:24 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:09:16 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ char	**ft_split(char const *s, char c)
 	return (ret_arr);
 }
 
-#include <stdio.h>
-int main(void)
-{
-	const char *s = "\0test\0this";
-	char **ret = ft_split(s, '\0');
-	int i = 0;
-	while (i < 0)
-	{
-		printf("%d: %s\n", i, ret[i]);
-		i++;
-	}
-	printf("\n");
-}
+// #include <stdio.h>
+// int main(void)
+// {
+// 	const char *s = "\0test\0this";
+// 	char **ret = ft_split(s, '\0');
+// 	int i = 0;
+// 	while (i < 0)
+// 	{
+// 		printf("%d: %s\n", i, ret[i]);
+// 		i++;
+// 	}
+// 	printf("\n");
+// }
