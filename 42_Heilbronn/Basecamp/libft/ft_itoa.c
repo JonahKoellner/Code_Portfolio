@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 13:47:58 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/02 15:21:08 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ char	*ft_itoa(int n)
 // 	int integer = -0;
 // 	char *string = ft_itoa(integer);
 // 	printf("%s\n", string);
-// 	printf("%d", (signed int)-0 == -0);
 // }
