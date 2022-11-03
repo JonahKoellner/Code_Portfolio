@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:48:50 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 09:39:46 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/03 21:33:09 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,14 @@ void	free_lst(t_list *lst, void (*del)(void *))
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int		lst_len;
 	t_list	*ret_lst;
 	t_list	*ret_lst_p;
 
-	lst_len = ft_lstsize(lst);
 	ret_lst = malloc(sizeof(t_list));
 	if (ret_lst == 0)
 		return (NULL);
 	ret_lst_p = ret_lst;
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
 		ret_lst_p->content = f(lst->content);
 		ret_lst_p->next = malloc(sizeof(t_list));
@@ -47,6 +45,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			return (NULL);
 		}
 		ret_lst_p = ret_lst_p->next;
+		lst = lst->next;
 	}
 	return (ret_lst);
 }

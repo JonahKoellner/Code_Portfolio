@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:45:38 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 08:48:02 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:36:45 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
 		f(lst->content);
 		lst = lst->next;
