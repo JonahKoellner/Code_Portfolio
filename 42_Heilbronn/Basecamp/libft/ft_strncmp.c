@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:16 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 13:51:36 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:25:12 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	int	counter;
 
+	if (n <= 0)
+		return (0);
 	counter = 0;
 	while (s1[counter] != '\0'
 		&& s2[counter] != '\0'

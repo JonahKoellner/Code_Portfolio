@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 15:21:08 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:32:16 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int	len_int(int n)
 {
 	int	counter;
 
+	counter = 0;
+	if (n < 0)
+		counter++;
 	if (n == 0)
 		return (1);
-	counter = 0;
 	while ((n))
 	{
 		counter++;
@@ -32,28 +34,28 @@ char	*ft_itoa(int n)
 {
 	int		n_len;
 	char	*ret_str;
-	int		counter;
 	int		positive;
 
-	positive = 1;
-	if (n < 0)
-	{
-		positive = 0;
-		n *= -1;
-	}
 	n_len = len_int(n);
 	ret_str = ft_calloc(n_len + 1, sizeof(char));
 	if (ret_str == NULL)
 		return (0);
-	counter = 0;
-	while (counter < n_len)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	positive = 1;
+	if (n < 0)
 	{
-		ret_str[n_len - positive - counter] = (n % 10) + '0';
-		n /= 10;
-		counter++;
-	}
-	if (!positive)
+		positive = 0;
 		ret_str[0] = '-';
+		n_len -= 1;
+		n *= -1;
+	}
+	while (n_len)
+	{
+		ret_str[n_len - positive] = (n % 10) + '0';
+		n /= 10;
+		n_len--;
+	}
 	return (ret_str);
 }
 

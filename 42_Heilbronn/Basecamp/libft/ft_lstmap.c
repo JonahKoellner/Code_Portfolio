@@ -3,48 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 08:48:50 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/03 21:33:09 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/07 11:26:16 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	free_lst(t_list *lst, void (*del)(void *))
-{
-	t_list	*tmp_free;
-
-	while (lst->next != NULL)
-	{
-		del(lst->content);
-		tmp_free = lst;
-		lst = lst->next;
-		free(tmp_free);
-	}
-}
-
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*ret_lst;
-	t_list	*ret_lst_p;
+	t_list	*lst_new_node;
 
-	ret_lst = malloc(sizeof(t_list));
-	if (ret_lst == 0)
+	if (f == NULL || del == NULL)
 		return (NULL);
-	ret_lst_p = ret_lst;
+	ret_lst = NULL;
 	while (lst != NULL)
 	{
-		ret_lst_p->content = f(lst->content);
-		ret_lst_p->next = malloc(sizeof(t_list));
-		if (ret_lst_p->next == 0)
+		lst_new_node = ft_lstnew(f(lst->content));
+		if (lst_new_node == NULL)
 		{
-			free_lst(ret_lst, del);
+			ft_lstclear(&ret_lst, del);
 			return (NULL);
 		}
-		ret_lst_p = ret_lst_p->next;
+		ft_lstadd_back(&ret_lst, lst_new_node);
 		lst = lst->next;
 	}
 	return (ret_lst);

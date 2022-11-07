@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:11:12 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 15:23:08 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:56:44 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 		counter++;
 	while (counter >= 0)
 	{
-		if (s[counter] == c)
+		if (s[counter] == (char)c)
 			return ((char *)&s[counter]);
 		counter--;
 	}

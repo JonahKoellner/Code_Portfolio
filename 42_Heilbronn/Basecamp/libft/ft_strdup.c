@@ -6,12 +6,11 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:48 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 15:55:33 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/07 18:46:49 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <errno.h>
 #include "libft.h"
 
 char	*cpy(const char *s1, char *s2)
@@ -38,9 +37,6 @@ char	*ft_strdup(const char *s1)
 		counter++;
 	ret_mem = malloc((counter + 1) * sizeof(char));
 	if (ret_mem == 0)
-	{
-		errno = ENOMEM;
 		return (0);
-	}
 	return (cpy(s1, ret_mem));
 }

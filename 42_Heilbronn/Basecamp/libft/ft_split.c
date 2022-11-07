@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:09:51 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/02 11:09:16 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:15:51 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,96 +14,95 @@
 #include <unistd.h>
 #include "libft.h"
 
-int	count_until_c(char *s, char c)
+#include <stdio.h>
+
+int	amount_words(char *s, char c)
 {
-	int	counter;
+	int	amount_words;
+	int	before_was_word;
 
-	counter = 0;
-	while (s[counter] != c)
-		counter++;
-	return (counter);
-}
-
-int	fill_to_n(int n, char *dst, char *org)
-{
-	int	counter;
-
-	counter = 0;
-	while (counter < n)
+	before_was_word = 0;
+	amount_words = 0;
+	while (*s)
 	{
-		dst[counter] = org[counter];
-		counter++;
-	}
-	return (counter);
-}
-
-int	count_c(char *s_p, char c)
-{
-	int	counter;
-
-	counter = 0;
-	while (s_p[counter] == c)
-		counter++;
-	return (counter);
-}
-
-char	**allocate_2d_arr(int size, char const *s, char c)
-{
-	int		counter;
-	char	**ret;
-	int		amount_in_arrays;
-	char	*s_p;
-
-	s_p = (char *)s;
-	counter = 0;
-	ret = ft_calloc((size_t)size + 1, sizeof(char *));
-	while (counter <= size)
-	{
-		s_p += count_c(s_p, c);
-		amount_in_arrays = count_until_c(s_p, c);
-		ret[counter] = ft_calloc((size_t)amount_in_arrays, sizeof(char));
-		if (fill_to_n(amount_in_arrays, ret[counter], s_p) != amount_in_arrays)
+		if (before_was_word == 0 && *s != c)
 		{
-			while (counter)
-				free(ret[counter--]);
-			free(ret);
-			return (NULL);
+			before_was_word = 1;
+			amount_words++;
 		}
-		counter++;
-		s_p += amount_in_arrays;
+		else if (*s == c)
+			before_was_word = 0;
+		s++;
 	}
-	return (ret);
+	return (amount_words);
+}
+
+int	until_c(char *str, char c)
+{
+	int	counter;
+
+	counter = 0;
+	while (str[counter] != c && str[counter] != '\0')
+		counter++;
+	return (counter);
+}
+
+int	until_non_c(char *str, char c)
+{
+	int	counter;
+
+	counter = 0;
+	while (str[counter] == c && str[counter] != '\0')
+		counter++;
+	return (counter);
+}
+
+char	**free_arr(char **ret_str, int i)
+{
+	while (i)
+	{
+		free(ret_str[i]);
+		i--;
+	}
+	free(ret_str);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		amount_total;
-	int		counter;
+	char	*s_trim;
+	int		i;
 	char	**ret_arr;
 
-	counter = 0;
-	amount_total = 0;
-	if (!s || !c)
-		return (0);
-	while (s[counter] != '\0')
-	{
-		if (s[counter] == c && s[counter + 1] != c && s[counter + 1] != '\0')
-			amount_total++;
-		counter++;
-	}
-	ret_arr = allocate_2d_arr(amount_total, s, c);
+	if (s == NULL)
+		return (NULL);
+	i = 0;
+	s_trim = (char *)s;
+	while (*s_trim == c && *s_trim)
+			s_trim++;
+	ret_arr = ft_calloc(amount_words(s_trim, c) + 1, sizeof(char *));
 	if (ret_arr == NULL)
 		return (NULL);
+	while (*s_trim)
+	{
+		while (*s_trim == c && *s_trim)
+			s_trim++;
+		ret_arr[i] = ft_substr(s_trim, 0, until_c(s_trim, c));
+		if (ret_arr[i] == NULL)
+			return (free_arr(ret_arr, i));
+		s_trim += until_c(s_trim, c);
+		s_trim += until_non_c(s_trim, c);
+		i++;
+	}
 	return (ret_arr);
 }
 
-// #include <stdio.h>
 // int main(void)
 // {
-// 	const char *s = "\0test\0this";
-// 	char **ret = ft_split(s, '\0');
+// 	const char *s = "111111111";
+// 	char **ret = ft_split(s, '1');
 // 	int i = 0;
-// 	while (i < 0)
+// 	while (i < 2)
 // 	{
 // 		printf("%d: %s\n", i, ret[i]);
 // 		i++;
