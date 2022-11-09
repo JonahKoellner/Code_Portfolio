@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   og_printf_tester.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 10:23:55 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/08 10:24:34 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:39:24 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 int main(void)
 {
-	printf("%d", 10, 10);
+	printf("%d", 10);
 	return (0);
 }

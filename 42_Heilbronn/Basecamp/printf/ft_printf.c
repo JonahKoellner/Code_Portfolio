@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 10:59:55 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/09 12:18:06 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/09 21:13:25 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_printf(const char *format_string, ...)
 	int		until_next;
 	va_list va_l;
 
-	va_start(vl, format_string);
+	va_start(va_l, format_string);
 	string = (char *)format_string;
 	re_count = 0;
 	while (string)
