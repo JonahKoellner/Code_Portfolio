@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/04 11:32:16 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/08 14:26:39 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ char	*ft_itoa(int n)
 	char	*ret_str;
 	int		positive;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	n_len = len_int(n);
 	ret_str = ft_calloc(n_len + 1, sizeof(char));
 	if (ret_str == NULL)
 		return (0);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	positive = 1;
 	if (n < 0)
 	{
