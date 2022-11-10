@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   specifier_interpreter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:19:28 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/10 13:03:33 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:51:19 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 char	*identify_specifier(char specifier_character, va_list args)
 {
 	if (specifier_character == 'c')
-		return (0); // va_arg(args, char);
+		return (va_arg(args, char));
 	if (specifier_character == 's')
 		return (va_arg(args, char *));
 	// only one write function that takes length as parameter
@@ -27,7 +27,7 @@ char	*identify_specifier(char specifier_character, va_list args)
 	if (specifier_character == 'i')
 		return (ft_itoa((va_arg(args, int))));
 	if (specifier_character == 'u')
-		return (0); //
+		return (ft_itoa((va_arg(args, unsigned int))));
 	if (specifier_character == 'x')
 		return (hex_itoa(va_arg(args, int), 0));
 	if (specifier_character == 'X')
