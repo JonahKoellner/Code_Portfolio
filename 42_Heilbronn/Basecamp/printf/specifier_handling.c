@@ -6,14 +6,14 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:58:51 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/10 17:48:38 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:56:33 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-int	len_int(int n)
+int	int_len(int n)
 {
 	int	counter;
 
@@ -25,28 +25,44 @@ int	len_int(int n)
 	while (n)
 	{
 		counter++;
-		n /= 10;
+		n /= 16;
 	}
 	return (counter);
 }
 
-char	*hex_itoa(int n, int upper)
+char	*hex_itoa(unsigned long long n, int upper)
 {
 	char	*base;
 	int		n_len;
 	char	*ret_string;
 
-	if (upper)
+	if (upper == 1)
 		base = "0123456789ABCDEF";
 	else
 		base = "0123456789abcdef";
-	n_len = len_int(n);
+	n_len = int_len(n);
 	ret_string = ft_calloc(n_len + 1, sizeof(char));
 	if (ret_string == NULL)
 		return (0);
 	if (n < 0)
+	{
 		ret_string[0] = '-';
+		n *= -1;
+	}
 	if (n == 0)
 		ret_string[0] = '0';
-
+	while (n && n_len--)
+	{
+		ret_string[n_len] = base[n % 16];
+		n /= 16;
+	}
+	return (ret_string);
 }
+
+// char	*get_addr(unsigned long long pointer)
+// {
+// 	char	*ret_addr;
+
+// 	ret_addr = hex_itoa(pointer, 1);
+// 	return (ret_addr);
+// }
