@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:10:22 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 15:03:35 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:58:13 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*substr;
 	int		counter;
 
+	if (!s)
+		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
 	{
 		substr = ft_calloc((1), sizeof(char));

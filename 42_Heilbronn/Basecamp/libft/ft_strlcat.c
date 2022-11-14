@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:18:47 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 18:05:39 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:53:48 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,23 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int	dst_len;
-	int	src_len;
-	int	counter;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	counter;
 
-	if (!dst && !dstsize)
-		return (ft_strlen(src));
 	src_len = ft_strlen(src);
+	if (!dstsize)
+		return (src_len);
 	dst_len = ft_strlen(dst);
-	if (src_len == 0 && (int)dstsize < dst_len)
-		return (dstsize);
+	if (dst_len > dstsize)
+		return (src_len + dstsize);
 	counter = 0;
-	while (dst_len + counter < (int)dstsize - 1 && src[counter])
+	while (dst_len + counter < dstsize - 1 && src[counter])
 	{
 		dst[dst_len + counter] = src[counter];
 		counter++;
 	}
-	while (dst_len + counter < (int)dstsize)
-		dst[dst_len + counter++] = '\0';
-	if (dst_len > (int)dstsize)
-		return (src_len + dstsize);
+	dst[dst_len + counter] = '\0';
 	return (dst_len + src_len);
 }
 

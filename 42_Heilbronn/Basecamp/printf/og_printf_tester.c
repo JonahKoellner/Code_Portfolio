@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 10:23:55 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/11 10:41:31 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:13:03 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ int main(void)
 	printf("%X\n", 354534534);
 	printf("0x%x\n", (int)ptr);
 	printf("%p\n", ptr);
+	printf("Das Erf%%asdasd");
 	return (0);
 }

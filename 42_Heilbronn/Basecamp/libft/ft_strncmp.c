@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:16 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 12:25:12 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:23:17 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	counter;
+	size_t	counter;
 
 	if (n <= 0)
 		return (0);
 	counter = 0;
 	while (s1[counter] != '\0'
 		&& s2[counter] != '\0'
-		&& counter < (int)n - 1)
+		&& counter < n - 1)
 	{
 		if (s1[counter] != s2[counter])
 			break ;
@@ -35,8 +35,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	const char *string1 = "test";
-// 	const char *string2 = "tested";
-// 	printf("%d\n", ft_strncmp(string1, string2, 10));
-// 	printf("%d\n", strncmp(string1, string2, 10));
+// 	const char *string1 = "1234";
+// 	const char *string2 = "12345";
+// 	printf("%d\n", ft_strncmp(string1, string2, -1));
+// 	printf("%d\n", strncmp(string1, string2, -1));
 // }

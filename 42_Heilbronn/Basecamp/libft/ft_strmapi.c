@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:38:03 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 13:10:27 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:00:27 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		counter;
 	char	*ret_str;
 
+	if (!s || !f)
+		return (NULL);
 	counter = 0;
 	s_len = ft_strlen(s);
 	ret_str = ft_calloc(s_len + 1, sizeof(char));

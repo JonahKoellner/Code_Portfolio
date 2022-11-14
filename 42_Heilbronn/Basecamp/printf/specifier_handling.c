@@ -6,12 +6,11 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:58:51 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/11 11:56:33 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:52:31 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdlib.h>
 
 int	int_len(int n)
 {
@@ -19,6 +18,7 @@ int	int_len(int n)
 
 	if (n == 0)
 		return (1);
+	// counter = !!(n % 16) * 2;
 	counter = 0;
 	if (n < 0)
 		counter++;
@@ -51,7 +51,7 @@ char	*hex_itoa(unsigned long long n, int upper)
 	}
 	if (n == 0)
 		ret_string[0] = '0';
-	while (n && n_len--)
+	while (n_len-- && n)
 	{
 		ret_string[n_len] = base[n % 16];
 		n /= 16;

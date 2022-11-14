@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 14:05:58 by jkollner          #+#    #+#             */
-/*   Updated: 2022/10/24 13:14:47 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:05:15 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	if (!s)
+		return ;
 	while (*s != '\0')
 		write(fd, s++, 1);
 }
