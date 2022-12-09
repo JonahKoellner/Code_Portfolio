@@ -6,14 +6,14 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:16:49 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/08 14:26:39 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:53:37 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int	len_int(int n)
+int	len_int(long n)
 {
 	int	counter;
 
@@ -30,14 +30,12 @@ int	len_int(int n)
 	return (counter);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long n)
 {
 	int		n_len;
 	char	*ret_str;
 	int		positive;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	n_len = len_int(n);
 	ret_str = ft_calloc(n_len + 1, sizeof(char));
 	if (ret_str == NULL)

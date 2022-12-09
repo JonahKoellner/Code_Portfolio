@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:14:20 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 18:24:19 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:41:45 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		dst[counter] = src[counter];
 		counter++;
 	}
-	while (counter < ft_strlen(dst))
-		dst[counter++] = '\0';
+	dst[counter] = '\0';
 	return (ft_strlen(src));
 }

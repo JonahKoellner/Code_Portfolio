@@ -6,11 +6,12 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 10:59:55 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/15 13:17:02 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:54:23 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	until_specifier(char *string)
 {
@@ -28,6 +29,7 @@ int	ft_printf(const char *format_string, ...)
 	int		re_n;
 	int		til_n;
 	va_list	va_l;
+	char	*str;
 
 	va_start(va_l, format_string);
 	string = (char *)format_string;
@@ -35,7 +37,9 @@ int	ft_printf(const char *format_string, ...)
 	while (*string)
 	{
 		til_n = until_specifier(string);
-		re_n += write(STDOUT_FILENO, ft_substr(string, 0, til_n), til_n);
+		str = ft_substr(string, 0, til_n);
+		re_n += write(STDOUT_FILENO, str, til_n);
+		free(str);
 		string += til_n;
 		if (*string != '\0')
 		{
@@ -44,5 +48,6 @@ int	ft_printf(const char *format_string, ...)
 		}
 	}
 	va_end(va_l);
+	// printf("my:%d\n", re_n);
 	return (re_n);
 }

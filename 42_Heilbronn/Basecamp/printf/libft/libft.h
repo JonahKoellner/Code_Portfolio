@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:52:31 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 18:34:22 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:17:52 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_lstsize(t_list *lst);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_itoa(int n);
+char	*ft_itoa(long n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 t_list	*ft_lstlast(t_list *lst);

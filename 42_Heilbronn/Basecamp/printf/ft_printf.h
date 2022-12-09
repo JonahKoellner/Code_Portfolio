@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:38:32 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/15 18:08:36 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/11/28 16:37:16 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include "libft/libft.h"
 
 int		ft_printf(const char *format_string, ...);
