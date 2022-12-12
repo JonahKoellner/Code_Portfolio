@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 10:59:55 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/09 16:54:23 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:41:31 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ int	ft_printf(const char *format_string, ...)
 		}
 	}
 	va_end(va_l);
-	// printf("my:%d\n", re_n);
 	return (re_n);
 }

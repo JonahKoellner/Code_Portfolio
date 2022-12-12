@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:45:48 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/07 18:46:49 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/12 10:03:54 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,16 @@ char	*cpy(const char *s1, char *s2)
 
 char	*ft_strdup(const char *s1)
 {
-	char	*ret_mem;
-	int		counter;
+	char		*ret_mem;
+	int			counter;
+	const char	*null;
 
+	null = "(null)";
+	if (s1 == NULL)
+	{
+		ret_mem = ft_calloc(ft_strlen(null) + 1, sizeof(char));
+		return (cpy(null, ret_mem));
+	}
 	counter = 0;
 	while (s1[counter] != '\0')
 		counter++;

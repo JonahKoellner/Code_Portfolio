@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:38:32 by jkollner          #+#    #+#             */
-/*   Updated: 2022/11/28 16:37:16 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:12:29 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int		ft_printf(const char *format_string, ...);
 
 int		specifier_interpreter(char *string, va_list args);
 
-char	*hex_itoa(unsigned long long n, int upper);
+char	*hex_itoa(long long n, int upper, int p);
 #endif /*FT_PRINTF_H*/
