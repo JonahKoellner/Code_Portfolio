@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   realloc_test.c                                     :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 14:56:18 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/14 14:42:46 by jkollner         ###   ########.fr       */
+/*   Created: 2022/12/14 09:44:18 by jkollner          #+#    #+#             */
+/*   Updated: 2022/12/14 15:02:08 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#if !defined BUFFER_SIZE
-# define BUFFER_SIZE 1096
-#endif
+#include "get_next_line.h"
 
 int	ft_strlen(char *string)
 {
@@ -85,40 +80,18 @@ int	clean_up_buffer(char *buffer, int to_clean, int buffersize)
 	return (clean_counter);
 }
 
-int	main(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*str;
+	void	*ret_mem;
 
-	str = malloc(6 * sizeof(char));
-	str[0] = 'H';
-	str[1] = 'a';
-	str[2] = 'l';
-	str[3] = 'l';
-	str[4] = 'o';
-	str[5] = '\0';
-	printf("Value: %s; Address: %p\n", str, str);
-	str = ft_realloc_join((const char *)str, "Welt");
-	printf("Value: %s; Address: %p\n", str, str);
-	int test_counter = 0;
-	while (test_counter < 10)
+	if (count != 0)
 	{
-		printf("%p: %d\n", &str[test_counter], str[test_counter]);
-		test_counter++;
+		if (!count || (count * size) / count != size)
+			return (NULL);
 	}
-	// str = ft_realloc_join((const char *)str, "Welt");
-	// printf("Value: %s; Address: %p\n", str, str);
-	// str = ft_realloc_join((const char *)str, "Welt");
-	// printf("Value: %s; Address: %p\n", str, str);
-	printf("Before clean up: %s\n", str);
-	printf("amount cleaned: %d\n", clean_up_buffer(str, 5, 10));
-	printf("After clean up: %s\n", str);
-	test_counter = 0;
-	while (test_counter < 10)
-	{
-		printf("%p: %d\n", &str[test_counter], str[test_counter]);
-		test_counter++;
-	}
-	free(str);
-	printf("BUFFER_SIZE %d\n", BUFFER_SIZE);
-	return (1);
+	ret_mem = (void *)malloc(count * size);
+	if (ret_mem == NULL)
+		return (NULL);
+	ft_bzero(ret_mem, count * size);
+	return (ret_mem);
 }
