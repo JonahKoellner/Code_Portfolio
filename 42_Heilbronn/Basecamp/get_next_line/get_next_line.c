@@ -3,67 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkollner <jkollner@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:13 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/14 21:22:17 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:15:52 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
+#include "get_next_line.h"
 #if !defined BUFFER_SIZE
 # define BUFFER_SIZE 1096
 #endif
 
+/*
+Checks the given buffer for a \n (newline)
+and returns the position of it in the buffer.
+If it can't find one, or if it finds a \0 it will return the BUFFER_SIZE
+*/
+int	check_nl(char *buffer)
+{
+	int	counter;
+
+	counter = 0;
+	while (buffer[counter] != '\n')
+	{
+		if (buffer[counter] == '\0')
+			return (BUFFER_SIZE);
+		counter++;
+	}
+	return (counter);
+}
+
+/*
+Copys out of buffer the given amount and joins it with the given str.
+It also cleans the given buffer by the given amount.
+It frees itself and the str and returns the reallocated version
+with both of them combined
+*/
+char	*re_cl(char *buffer, char *str, int amount)
+{
+	char	*t_string;
+	int		counter;
+
+	counter = 0;
+	t_string = malloc(amount * sizeof(char));
+	while (counter < amount)
+	{
+		t_string[counter] = buffer[counter];
+		counter++;
+	}
+	return (ft_realloc_j(str, t_string, 1));
+}
+
 char	*get_next_line(int fd)
 {
-	// Sanity check for BUFFER_SIZE define
-	// static char *buffer witht the size of BUFFER_SIZE (calloc)
-	// define char *str
-	// check if there is something in the buffer (if buffer[0] != 0)
-		// check_nl() != 0
-			// return realloc(str, get_string_out(buffer, check_nl())
-		// add to the return string (ft_realloc_join)
-		// clean_up_buffer clean the entire buffer (just to_clean with buffersize)
-	// read = amount (so that the first time will definitly go into the loop)
-	// while (read == amount(=BUFFER_SIZE))
-		// read = read with BUFFER_SIZE into allocated buffer
-		// check read return value
-			// if return == -1
-				// error return NULL
-				// clean the buffer and clean the string
-		// check_nl() != 0
-			// return realloc(str, get_string(buffer, check_nl()))
-		// realloc(str, get_string(buffer, BUFFER_SIZE)) add to string and go to 21 and clean buffer to the given number
-	// if (read == -1)
-		// return NULL
-	// return string
+	static char	*buffer;
+	char		*str;
+	int			read_ret;
+
+	if (BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!buffer)
+		buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
+	str = ft_calloc(1, sizeof(char));
+	if (check_nl(buffer) != BUFFER_SIZE)
+		return (re_cl(buffer, str, check_nl(buffer)));
+	str = re_cl(buffer, str, check_nl(buffer));
+	read_ret = read(fd, buffer, BUFFER_SIZE);
+	printf("fsefsefesfsefesfs %d\n", read_ret);
+	while (read_ret != -1 && read_ret != 0)
+	{
+		if (check_nl(buffer) != BUFFER_SIZE)
+			return (re_cl(buffer, str, check_nl(buffer)));
+		str = ft_realloc_j(str, buffer, 0);
+		read_ret = read(fd, buffer, BUFFER_SIZE);
+	}
+	if (read_ret == -1)
+		return (free(str), NULL);
+		// return (free(buffer), free(str), NULL);
+	str = re_cl(buffer, str, check_nl(buffer));
+	// if (read_ret == 0)
+		// free(buffer);
+	return (str);
+}
 
 
-
-
-	// Sanity check for BUFFER_SIZE define
-	// static char *buffer witht the size of BUFFER_SIZE (calloc)
-	// define char *str
-	// check if there is something in the buffer (if buffer[0] != 0)
-		// check_nl() != 0
-			// return realloc(str, get_string_out(buffer, check_nl())
-		// add to the return string (ft_realloc_join)
-		// clean_up_buffer clean the entire buffer (just to_clean with buffersize)
-	// while ((read = read()) == amount(=BUFFER_SIZE))
-		// check read return value
-			// if return == -1
-				// error return NULL
-				// clean the buffer and clean the string
-		// check_nl() != 0
-			// return realloc(str, get_string(buffer, check_nl()))
-		// realloc(str, get_string(buffer, BUFFER_SIZE)) add to string and go to 21 and clean buffer to the given number
-	// if (read == -1)
-		// return NULL
-	// string = realloc(string, buffer); // realloc already stops joining at the first \0 it findes, so there is no need to cut the buffer
-	// clean_up_buffer()
-	// return string
-
-	// NEEDED METHODE:
-		// function that combines the reallocation and cleaning of the buffer of the read out amount
-
+int main(void)
+{
+	FILE* fd = fopen("test.txt", "r");
+	int fd_i = fileno(fd);
+	printf("%s\n", get_next_line(fd_i));
+	printf("%s\n", get_next_line(fd_i));
 }

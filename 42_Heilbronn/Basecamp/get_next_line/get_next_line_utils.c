@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:18 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/14 15:02:08 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:20:22 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,29 @@ int	ft_strlen(char *string)
 }
 
 /*
-Mix of realloc and join methode.
-It joins the given string with another string and reallocates the first string.
-
-Usage:
-str = ft_realloc_join(str, "World");
+Allocates a string and copys the given amount out of the buffer
+and returns said string.
 */
-void	*ft_realloc_join(const char *first, char *last)
+char	*copy_out(char *buffer, int amount)
+{
+	char	*ret_string;
+
+	ret_string = ft_calloc(amount, sizeof(char));
+	while (amount)
+	{
+		ret_string[amount] = buffer[amount];
+	}
+	return (ret_string);
+}
+
+/*
+Mix of realloc and join methode.
+It joins the given string with another string and frees both of the string.
+The last parameter defines if the second stirng will be freeed aswell
+Usage:
+str = ft_realloc_join(str, string2, 1);
+*/
+void	*ft_realloc_j(const char *first, char *last, int free_last)
 {
 	char	*ret;
 	int		counter;
@@ -52,6 +68,8 @@ void	*ft_realloc_join(const char *first, char *last)
 	}
 	ret[counter + counter_last] = '\0';
 	free((void *)first);
+	if (free_last)
+		free((void *)last);
 	return (ret);
 }
 
@@ -76,13 +94,13 @@ int	clean_up_buffer(char *buffer, int to_clean, int buffersize)
 		buffer[move_counter] = 0;
 		move_counter++;
 	}
-	printf("move counter: %d\n", move_counter);
 	return (clean_counter);
 }
 
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ret_mem;
+	char	*void_cast;
 
 	if (count != 0)
 	{
@@ -92,6 +110,8 @@ void	*ft_calloc(size_t count, size_t size)
 	ret_mem = (void *)malloc(count * size);
 	if (ret_mem == NULL)
 		return (NULL);
-	ft_bzero(ret_mem, count * size);
+	void_cast = ret_mem;
+	while (count)
+		void_cast[count--] = 0;
 	return (ret_mem);
 }
