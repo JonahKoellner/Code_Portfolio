@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:13 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/15 16:15:52 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/27 11:19:37 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_nl(char *buffer)
 			return (BUFFER_SIZE);
 		counter++;
 	}
-	return (counter);
+	return (++counter);
 }
 
 /*
@@ -54,7 +54,20 @@ char	*re_cl(char *buffer, char *str, int amount)
 		t_string[counter] = buffer[counter];
 		counter++;
 	}
+	clean_up_buffer(buffer, amount, BUFFER_SIZE);
+	// printf("cleaned amount in re_cl: %d\n", clean_up_buffer(buffer, amount, BUFFER_SIZE));
 	return (ft_realloc_j(str, t_string, 1));
+}
+
+void	free_up(char *buffer, char *str)
+{
+	if (str != NULL)
+		free(str);
+	if (buffer != NULL)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
 }
 
 char	*get_next_line(int fd)
@@ -67,33 +80,41 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!buffer)
 		buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
+	// printf("buffer value at the beginning: %s\n", buffer);
 	str = ft_calloc(1, sizeof(char));
+	// printf("str at creation: %s\n", str);
 	if (check_nl(buffer) != BUFFER_SIZE)
 		return (re_cl(buffer, str, check_nl(buffer)));
 	str = re_cl(buffer, str, check_nl(buffer));
 	read_ret = read(fd, buffer, BUFFER_SIZE);
-	printf("fsefsefesfsefesfs %d\n", read_ret);
+	// printf("fsefsefesfsefesfs %d\n", read_ret);
 	while (read_ret != -1 && read_ret != 0)
 	{
+		// printf("buffer value beginnig loop: %s", buffer);
+		// printf("check_nl in loop: %d\n", check_nl(buffer));
 		if (check_nl(buffer) != BUFFER_SIZE)
 			return (re_cl(buffer, str, check_nl(buffer)));
 		str = ft_realloc_j(str, buffer, 0);
+		// printf("str in loop: %s\n", str);
 		read_ret = read(fd, buffer, BUFFER_SIZE);
+		// printf("new read ret in loop: %d\n", read_ret);
 	}
 	if (read_ret == -1)
-		return (free(str), NULL);
+		free_up(buffer, str);
+		// return (free(str), NULL);
 		// return (free(buffer), free(str), NULL);
 	str = re_cl(buffer, str, check_nl(buffer));
-	// if (read_ret == 0)
-		// free(buffer);
+	if (read_ret == 0)
+		free_up(buffer, NULL);
 	return (str);
 }
 
 
-int main(void)
-{
-	FILE* fd = fopen("test.txt", "r");
-	int fd_i = fileno(fd);
-	printf("%s\n", get_next_line(fd_i));
-	printf("%s\n", get_next_line(fd_i));
-}
+// int main(void)
+// {
+// 	FILE* fd = fopen("test.txt", "r");
+// 	int fd_i = fileno(fd);
+// 	printf("out in main: %s", get_next_line(fd_i));
+// 	printf("out in main: %s", get_next_line(fd_i));
+// 	fclose(fd);
+// }

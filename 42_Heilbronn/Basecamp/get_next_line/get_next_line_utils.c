@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:18 by jkollner          #+#    #+#             */
-/*   Updated: 2022/12/15 15:20:22 by jkollner         ###   ########.fr       */
+/*   Updated: 2022/12/27 11:15:56 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	void_cast = ret_mem;
 	while (count)
-		void_cast[count--] = 0;
+		void_cast[--count] = 0;
 	return (ret_mem);
 }
