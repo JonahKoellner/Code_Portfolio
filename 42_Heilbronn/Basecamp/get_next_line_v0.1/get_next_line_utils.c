@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:18 by jkollner          #+#    #+#             */
-/*   Updated: 2023/01/10 17:05:55 by jkollner         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:07:28 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ The last parameter defines if the second stirng will be freeed aswell
 Usage:
 str = ft_realloc_join(str, string2, 1);
 */
-void	*ft_realloc_j(const char *first, char *last, int free_last)
+void	*ft_realloc_j(char *first, char *last, int free_last)
 {
 	char	*ret;
 	int		counter;
@@ -53,8 +53,7 @@ void	*ft_realloc_j(const char *first, char *last, int free_last)
 
 	counter = 0;
 	counter_last = 0;
-	ret = malloc((ft_strlen((char *)first) + ft_strlen(last) + 1) * 1);
-	// printf("First: %s\n Last: %s\n", first, last);
+	ret = ft_calloc((ft_strlen((char *)first) + ft_strlen(last) + 1), 1);
 	if (ret == NULL)
 		return (NULL);
 	while (first[counter] != '\0')
@@ -67,7 +66,7 @@ void	*ft_realloc_j(const char *first, char *last, int free_last)
 		ret[counter + counter_last] = last[counter_last];
 		counter_last++;
 	}
-	ret[counter + counter_last] = '\0';
+	// ret[counter + counter_last] = '\0';
 	// printf("Ret after working in ft_realloc_j: %s\n", ret);
 	free((void *)first);
 	if (free_last)

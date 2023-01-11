@@ -6,7 +6,7 @@
 /*   By: jkollner <jkollner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 09:44:13 by jkollner          #+#    #+#             */
-/*   Updated: 2023/01/10 18:08:01 by jkollner         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:43:38 by jkollner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ with both of them combined
 // 		counter++;
 // 	}
 // 	clean_up_buffer(buffer, amount, BUFFER_SIZE);
-// 	// printf("cleaned amount in re_cl: %d\n", clean_up_buffer(buffer, amount, BUFFER_SIZE));
+// 	// printf("cleaned amount in re_cl: %d\n",
+//clean_up_buffer(buffer, amount, BUFFER_SIZE));
 // 	return (ft_realloc_j(str, t_string, 1));
 // }
 
@@ -72,26 +73,23 @@ int	ft_strchr(char *string, char c)
 char	*read_file(int fd, char *buffer)
 {
 	int		read_return;
-	char	*ret_string;
+	char	*string;
 
 	read_return = 1;
-	// while loop that checks for the read return (read_return > 0) (checks for errors and nothing left to read case)
-	ret_string = ft_calloc(BUFFER_SIZE, 1);
+	string = ft_calloc(BUFFER_SIZE, sizeof(char));
+	if (!buffer)
+		buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
 	while (read_return > 0)
 	{
-		// printf("Reading..\n");
-		read_return = read(fd, ret_string, BUFFER_SIZE);
-		// printf("read_return and read_buffer after read in read_file: %d; %s\n", read_return, read_buffer);
+		read_return = read(fd, string, BUFFER_SIZE);
 		if (read_return < 0)
-			return (free(ret_string), free(buffer), NULL);
-		// join the read_buffer and the retunstring together
-		ret_string = ft_realloc_j(ret_string, buffer, 0);
-		// printf("ret_string after joining: %s\n", ret_string);
-		if (ft_strchr(ret_string, '\n'))
+			return (free(string), free(buffer), NULL);
+		buffer = ft_realloc_j(string, buffer, 1);
+		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
-	// printf("Buffer before free: %s; ret_string: %s\n", buffer, ret_string);
-	return (ret_string);
+	// free(string);
+	return (buffer);
 }
 
 char	*next_nl(char *buffer)
@@ -99,40 +97,22 @@ char	*next_nl(char *buffer)
 	int		until_counter;
 	char	*return_string;
 
-	// find the next nl or the end
 	until_counter = 0;
 	while (buffer[until_counter] != '\n' && buffer[until_counter] != '\0')
 		until_counter++;
-	// create return storage with the size of until_counter + 1;
+	if (!buffer[until_counter])
+		return (free(buffer), NULL);
 	return_string = ft_calloc(until_counter + 1, sizeof(char));
+	if (return_string == NULL)
+		return (NULL);
 	while (until_counter >= 0)
 	{
-		// printf("%c\n", buffer[until_counter]);
 		return_string[until_counter] = buffer[until_counter];
 		until_counter--;
 	}
-	// printf("return string in next_nl: %s", return_string);
+	free(buffer);
 	return (return_string);
 }
-
-// char	*skip_next(char *buffer)
-// {
-// 	int		until_nl;
-// 	char	*ret_string;
-// 	int		out_copy_size;
-
-// 	until_nl = 0;
-// 	while (buffer[until_nl] != '\n')
-// 		until_nl++;
-// 	out_copy_size = ft_strlen(buffer) - until_nl;
-// 	ret_string = ft_calloc(out_copy_size, 1);
-// 	while (out_copy_size)
-// 	{
-// 		ret_string[out_copy_size] = buffer[out_copy_size];
-// 		out_copy_size--;
-// 	}
-// 	return (free(buffer), ret_string);
-// }
 
 char	*get_next_line(int fd)
 {
@@ -140,78 +120,74 @@ char	*get_next_line(int fd)
 	char		*ret_string;
 
 	ret_string = NULL;
-	// check for invalid buffersize or fd -> NULL
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	if (!buffer)
-		buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
-	// read the entire file with the given buffersize amount (extra function)
-	// printf("buffer before reading in gnl: %s\n", buffer);
+	// if (!buffer)
+	// 	buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
 	buffer = read_file(fd, buffer);
-	// printf("buffer after reading in gnl: %s\n", buffer);
-	// check if return is null (= error)
 	if (!buffer)
-		return (free(buffer), NULL);
-	// give the returned buffer to the next function
-	// printf("Buffer before next_nl: %s\n", buffer);
+		return (NULL);
 	ret_string = next_nl(buffer);
-	// printf("Ret_string after next_nl: %s\nBuffer ?: %s\n", ret_string, buffer);
 
-	// that finds and returns the string
-	// up to the first nl or end of the buffer
-
-	// clean the buffer by ft_strlen(ret_string);
-	// printf("Amount cleaned: %d\n");
-	clean_up_buffer(buffer, ft_strlen(ret_string), ft_strlen(buffer));
-	// printf("Buffer after clean: %s\n", buffer);
-	// buffer = skip_next(buffer);
-	// printf("End of gnl after skip_next -> buffer: %s\n", buffer);
+	// clean_up_buffer(buffer, ft_strlen(ret_string), ft_strlen(buffer));
+	// if ()
+	// free(buffer);
 	return (ret_string);
 }
 
+#include <fcntl.h>
+
 int main(void)
 {
-	FILE* fd = fopen("test.txt", "r");
-	int fd_i = fileno(fd);
+	int fd_i = open("test.txt", 0);
 
-	// printf("test: %s\n", get_next_line(fd_i));
-	printf("out in main: %s", get_next_line(fd_i));
+// 	// printf("test: %s\n", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i)));
+// 	// printf("%s", get_next_line(fd_i)));
+	char *test = get_next_line(fd_i);
+	char *test1 = get_next_line(fd_i);
+	char *test2 = get_next_line(fd_i);
+	char *test3 = get_next_line(fd_i);
+	char *test4 = get_next_line(fd_i);
+	printf("%s", test);
+	printf("%s", test1);
+	printf("%s", test2);
+	printf("%s", test3);
+	printf("%s", test4);
+	free(test);
+	free(test1);
+	free(test2);
+	free(test3);
+	free(test4);
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// 	// printf("%s", get_next_line(fd_i));
+// // 	// printf("out in main: %s", free(get_next_line(fd_i)));
+// 	close(fd_i);
+// // // 	// char *buffer = malloc(6);
+// // // 	// buffer[0] = 'H';
+// // // 	// buffer[1] = 'a';
+// // // 	// buffer[2] = 'l';
+// // // 	// buffer[3] = 'l';
+// // // 	// buffer[4] = 'o';
+// // // 	// buffer[5] = '!';
 
-	printf("out in main: %s", get_next_line(fd_i));
-
-	printf("out in main: %s", get_next_line(fd_i));
-
-
-	printf("out in main: %s", get_next_line(fd_i));
-	printf("out in main: %s", get_next_line(fd_i));
-
-	printf("out in main: %s", get_next_line(fd_i));
-
-	 printf("out in main: %s", get_next_line(fd_i));
-
-	 printf("out in main: %s", get_next_line(fd_i));
-	printf("out in main: %s", get_next_line(fd_i));
-	printf("out in main: %s", get_next_line(fd_i));
-	// printf("out in main: %s", free(get_next_line(fd_i)));
-	fclose(fd);
-
-
-// 	// char *buffer = malloc(6);
-// 	// buffer[0] = 'H';
-// 	// buffer[1] = 'a';
-// 	// buffer[2] = 'l';
-// 	// buffer[3] = 'l';
-// 	// buffer[4] = 'o';
-// 	// buffer[5] = '!';
-
-// 	// int counter = 0;
-// 	// while (counter <= 5)
-// 	// 	printf("%d, ", buffer[counter++]);
-// 	// printf("\n");
-// 	// printf("clean return %d\n", clean_up_buffer(buffer, ft_strlen(buffer) / 2, ft_strlen(buffer)));
-// 	// printf("after clean in main: %s\nSize: %d\n", buffer, ft_strlen(buffer));
-// 	// counter = 0;
-// 	// while (counter <= 5)
-// 	// 	printf("%d, ", buffer[counter++]);
-// 	// printf("\n");
+// // // 	// int counter = 0;
+// // // 	// while (counter <= 5)
+// // // 	// 	printf("%d, ", buffer[counter++]);
+// // // 	// printf("\n");
+// // // 	// printf("clean return %d\n",
+// //clean_up_buffer(buffer, ft_strlen(buffer) / 2,
+// //ft_strlen(buffer)));
+// // // 	// printf("after clean in main: %s\nSize: %d\n", buffer,
+// //ft_strlen(buffer));
+// // // 	// counter = 0;
+// // // 	// while (counter <= 5)
+// // // 	// 	printf("%d, ", buffer[counter++]);
+// // // 	// printf("\n");
 }
